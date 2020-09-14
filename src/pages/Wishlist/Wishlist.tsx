@@ -2,7 +2,9 @@ import React from 'react'
 
 const Wishlist: React.FC = () => {
     return (
-        <div>Wishlist</div>
+        <div>
+            <h1>Your Wishlist</h1>
+        </div>
     )
 }
 export default Wishlist

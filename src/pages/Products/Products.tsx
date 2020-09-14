@@ -23,7 +23,7 @@ const Product: React.FC = () => {
                 return (
                     <div key={index} className='itemWrapper'>
                         <div className='imageWrapper'>
-                            <img src={item.image} alt={item.name} />
+                            <img src={item.image} />
                             <div className='like' onClick={handleLikeClick}>{liked ? <HeartFilled /> : <HeartOutlined />}</div>
                         </div>
                         <div className='itemDetails'>

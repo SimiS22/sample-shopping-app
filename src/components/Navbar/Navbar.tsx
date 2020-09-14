@@ -1,6 +1,8 @@
 import React from 'react'
 import { HeartOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import Basket from '../../pages/Basket/Basket'
 
 const NavbarWrapper = styled.div`
     display: flex;
@@ -22,8 +24,8 @@ const IconWrapper = styled.span`
     justify-content: center;
     align-items:center;
     height: 50px;
-    margin-left :15px;
-    margin-right: 20px;
+    margin-left :30px;
+    margin-right: 60px;
 `
 const iconStyle = {
     fontSize: '24px',
@@ -33,8 +35,8 @@ const Navbar: React.FC = () => {
     return (
         <NavbarWrapper>
             <InputWrapper type='textbox' placeholder='Search Product here' autoFocus={true} />
-            <IconWrapper><HeartOutlined style={iconStyle} /></IconWrapper>
-            <IconWrapper><ShoppingCartOutlined style={iconStyle} /></IconWrapper>
+            <IconWrapper ><Link to='/wishlist'><HeartOutlined style={iconStyle} /></Link></IconWrapper>
+            <IconWrapper><Link to='/shopping-cart'><ShoppingCartOutlined style={iconStyle} /></Link></IconWrapper>
         </NavbarWrapper>
     )
 }

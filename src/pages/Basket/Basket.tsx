@@ -2,7 +2,9 @@ import React from 'react'
 
 const Basket: React.FC = () => {
     return (
-        <div>Basket</div>
+        <div>
+            <h1>Your Shopping Cart</h1>
+        </div>
     )
 }
 export default Basket
