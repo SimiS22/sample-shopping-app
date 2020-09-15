@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 const HeaderWrapper = styled.h1`
     display: flex;
@@ -13,7 +14,7 @@ const HeaderWrapper = styled.h1`
 
 const Header: React.FC = () => {
     return (
-        <HeaderWrapper>Fruits Online!!</HeaderWrapper>
+        <HeaderWrapper><Link to='/'>Fruits Online!!</Link></HeaderWrapper>
     )
 }
 export default Header

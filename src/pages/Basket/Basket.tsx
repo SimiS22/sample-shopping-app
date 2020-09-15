@@ -1,16 +1,24 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../CartContext'
+import { ProductContext } from '../../contexts/ProductContext'
 
 const Basket: React.FC = () => {
-    const [cart, setCart] = useContext<any>(CartContext);
-    const totalPrice = cart.reduce((acc: number, currentItem: any) => {
-        return acc + currentItem.price;
-    }, 0)
+    const cart = useContext(ProductContext);
+    let priceArray: number[] = [];
     return (
-        <div>
-            <h1>Your Shopping Cart</h1>
-            <h4>Total Price : {totalPrice}</h4>
-        </div>
+        <>
+            <h1>Your Basket</h1>
+
+            {cart.inCart.map((itemId) => {
+                const addedItem = cart.products.filter(item => item.id === itemId);
+                console.log(addedItem)
+                return addedItem.map((item) => {
+                    priceArray.push(item.price)
+                    return (<h3>{item.name} - {item.price}</h3>)
+                });
+            })}
+            <h2>Total Price : {priceArray.reduce((acc, currentValue) => { return acc + currentValue }, 0)}</h2>
+        </>
     )
 }
 export default Basket

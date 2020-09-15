@@ -3,9 +3,7 @@ import { productDetails } from '../../data';
 import { HeartOutlined, HeartFilled, FrownOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import './Product.scss'
-import { CartContext } from '../../CartContext'
-
-export const ProductContext = createContext(productDetails);
+import { ProductContext } from '../../contexts/ProductContext';
 
 const itemWrapper = styled.div`
     display: flex;
@@ -13,26 +11,24 @@ const itemWrapper = styled.div`
     height: 100%;
     justify-content: center;    
 `
-
 const Product: React.FC = () => {
-    const [liked, setLiked] = useState(false)
-    const handleLikeClick = () => {
-        liked ? setLiked(false) : setLiked(true);
+    const ProductStore = useContext(ProductContext);
+
+    const handleCart = (id: number) => () => {
+        ProductStore.addToCart?.(id)
     }
 
-    const [cart, setCart] = useContext(CartContext)
-    const addToCart = () => {
-
+    const handleLikes = (id: number) => () => {
+        ProductStore.isLiked?.(id)
     }
-
     return (
         <div className='wrapper'>{
-            productDetails.map((item, index) => {
+            ProductStore.products.map((item, index) => {
                 return (
                     <div key={index} className='itemWrapper'>
                         <div className='imageWrapper'>
                             <img src={item.image} />
-                            <div className='like' onClick={handleLikeClick}>{liked ? <HeartFilled /> : <HeartOutlined />}</div>
+                            <div className='like' onClick={handleLikes(item.id)}>{ProductStore.liked.includes(item.id) ? <HeartFilled /> : <HeartOutlined />}</div>
                         </div>
                         <div className='itemDetails'>
                             <div>
@@ -40,7 +36,7 @@ const Product: React.FC = () => {
                                 <h4>{item.price}€/kg</h4>
                             </div>
                             <div className='basket'>
-                                <button onClick={addToCart}>Add to Cart</button>
+                                <button onClick={handleCart(item.id)}>Add to Cart</button>
                             </div>
                         </div>
                     </div>

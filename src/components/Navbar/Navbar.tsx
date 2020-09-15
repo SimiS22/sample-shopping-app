@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { HeartOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Basket from '../../pages/Basket/Basket'
+import { Badge } from 'antd'
+import { ProductContext } from '../../contexts/ProductContext'
 
 const NavbarWrapper = styled.div`
     display: flex;
@@ -32,11 +33,12 @@ const iconStyle = {
 }
 
 const Navbar: React.FC = () => {
+    const nav = useContext(ProductContext)
     return (
         <NavbarWrapper>
             <InputWrapper type='textbox' placeholder='Search Product here' autoFocus={true} />
-            <IconWrapper ><Link to='/wishlist'><HeartOutlined style={iconStyle} /></Link></IconWrapper>
-            <IconWrapper><Link to='/shopping-cart'><ShoppingCartOutlined style={iconStyle} /></Link></IconWrapper>
+            <IconWrapper ><Link to='/wishlist'><Badge count={nav.liked.length}><HeartOutlined style={iconStyle} /></Badge></Link></IconWrapper>
+            <IconWrapper><Link to='/shopping-cart'><Badge count={nav.inCart.length}><ShoppingCartOutlined style={iconStyle} /></Badge></Link></IconWrapper>
         </NavbarWrapper>
     )
 }
