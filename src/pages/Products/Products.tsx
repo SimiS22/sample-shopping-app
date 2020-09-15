@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { createContext, useState, useContext } from 'react'
 import { productDetails } from '../../data';
-import { HeartOutlined, HeartFilled } from '@ant-design/icons'
+import { HeartOutlined, HeartFilled, FrownOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import './Product.scss'
+import { CartContext } from '../../CartContext'
+
+export const ProductContext = createContext(productDetails);
 
 const itemWrapper = styled.div`
     display: flex;
@@ -15,6 +18,11 @@ const Product: React.FC = () => {
     const [liked, setLiked] = useState(false)
     const handleLikeClick = () => {
         liked ? setLiked(false) : setLiked(true);
+    }
+
+    const [cart, setCart] = useContext(CartContext)
+    const addToCart = () => {
+
     }
 
     return (
@@ -32,7 +40,7 @@ const Product: React.FC = () => {
                                 <h4>{item.price}€/kg</h4>
                             </div>
                             <div className='basket'>
-                                <button>Add to Cart</button>
+                                <button onClick={addToCart}>Add to Cart</button>
                             </div>
                         </div>
                     </div>
