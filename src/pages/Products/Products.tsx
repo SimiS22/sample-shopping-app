@@ -1,16 +1,9 @@
-import React, { createContext, useState, useContext } from 'react'
-import { productDetails } from '../../data';
-import { HeartOutlined, HeartFilled, FrownOutlined } from '@ant-design/icons'
-import styled from 'styled-components'
+import React, { useContext } from 'react'
+import { HeartOutlined, HeartFilled} from '@ant-design/icons'
+
 import './Product.scss'
 import { ProductContext } from '../../contexts/ProductContext';
 
-const itemWrapper = styled.div`
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;    
-`
 const Product: React.FC = () => {
     const ProductStore = useContext(ProductContext);
 
@@ -27,7 +20,7 @@ const Product: React.FC = () => {
                 return (
                     <div key={index} className='itemWrapper'>
                         <div className='imageWrapper'>
-                            <img src={item.image} />
+                            <img src={item.image} alt={item.name} />
                             <div className='like' onClick={handleLikes(item.id)}>{ProductStore.liked.includes(item.id) ? <HeartFilled /> : <HeartOutlined />}</div>
                         </div>
                         <div className='itemDetails'>

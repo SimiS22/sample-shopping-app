@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { HeartOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons'
+import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Badge } from 'antd'

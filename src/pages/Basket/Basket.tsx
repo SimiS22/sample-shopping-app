@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { CartContext } from '../../CartContext'
 import { ProductContext } from '../../contexts/ProductContext'
 
 const Basket: React.FC = () => {
